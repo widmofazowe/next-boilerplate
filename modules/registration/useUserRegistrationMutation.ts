@@ -11,7 +11,7 @@ export const useUserRegistrationMutation = () => {
   return useMutation<AxiosResponse<EndpointResponse>, AxiosError, User>(
     async payload => {
       debug(`Registering new user ${payload.email}`);
-      return axios.post('/api/proxy/registration', payload);
+      return axios.post('/api/proxy/user/registration', payload);
     },
     {
       onSuccess: () => {
