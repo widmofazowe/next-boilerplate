@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-import { NextPage } from 'next';
 import { useUser } from '@hooks/useUser';
+import useDebug from '@hooks/useDebug';
 import LoadingScreen from './Loading/LoadingScreen';
 import LoadingElement from './Loading/LoadingElement';
-import useDebug from '@hooks/useDebug';
 
 interface Props {
   children: JSX.Element;
@@ -24,14 +24,14 @@ const AuthGuard: NextPage<Props> = ({ children, roles = [] }) => {
 
   const redirect = () => {
     setTimeout(() => {
-      router.push('/login');
+      router.push('/');
     }, 1000);
   };
 
   useEffect(() => {
     console.log(user, isLoading, isIdle);
     if (!isLoading && !isIdle) {
-      debug('Checking priveleges');
+      debug('Checking privileges');
       if (user && (roles.length === 0 || checkPrivileges(roles, user?.roles))) {
         debug('Priveleges ok');
         setAllowed(true);

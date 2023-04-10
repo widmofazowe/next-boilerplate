@@ -29,7 +29,7 @@ const LoginForm = () => {
   const onSubmit = async data => {
     try {
       await loginMutation.mutateAsync(data);
-      router.push('/');
+      router.push('/dashboard');
     } catch (e: any) {
       debug(e);
       const status = e?.response?.status;
